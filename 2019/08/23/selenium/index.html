@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="What does not kill me,makes me stronger.">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="MJL">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="基于selenium的自动化测试">
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="What does not kill me,makes me stronger.">
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="MJL-1401">
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article">
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="http://yoursite.com/img/home-bg.jpg">
+    
+
+        <meta name="twitter:card" content="summary_large_image">
+
+    
+
+    
+        <meta name="twitter:image" content="http://yoursite.com/img/home-bg.jpg">
+    
+
+    <!-- Title -->
+    
+    <title>基于selenium的自动化测试 - MJL-1401</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">View Article</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                Tags
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                Categories
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/MJL-1401/MJL-1401.github.io">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>基于selenium的自动化测试</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2019-08-23
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/selenium/">#selenium</a> <a href="/tags/自动化测试/">#自动化测试</a> <a href="/tags/敏捷测试/">#敏捷测试</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h3 id="一、自动化测试流程"><a href="#一、自动化测试流程" class="headerlink" title="一、自动化测试流程"></a>一、自动化测试流程</h3><p>实施自动化测试的前提条件是需求变动不频繁、项目周期足够长、自动化测试脚本可重复使用。需求变动频繁的项目，自动化脚本不能重复使用，维护成本太大，性价比低。项目周期短，自动化脚本编制完成后使用次数不多，性价比低。交互型较强的项目，需要人工干预的项目，自动化无法实施</p>
+<p>适合做自动化的项目有：</p>
+<ol>
+<li>产品型项目。产品型的项目，新版本是在旧版本的基础上进行改进，功能变不大的项目，但项目的新老功能都必须重复的进行回归测试。回归测试是自动化测试的强项，它能够很好的验证你是否引入了新的缺陷，老的缺陷是否修改过来了。在某种程度上可以把自动化测试工具叫做回归测试工具。</li>
+<li>机械并频繁的测试。每次需要输入相同、大量的一些数据，并且在一个项目中运行的周期比较长。</li>
+</ol>
+<p>单纯的讲，自动化测试的具体实现，应该是包含下面七个过程的：</p>
+<ul>
+<li>分析：总体把握系统逻辑，分析出系统的核心体系架构。</li>
+<li>设计：设计测试用例，测试用例要足够明确和清晰，覆盖面广而精</li>
+<li>实现：实现脚本，有两个要求一是断言，二是合理的运用参数化。</li>
+<li>执行：执行脚本远远没有我们想象中那么简单。脚本执行过程中的异常需要我们仔细的去分析原因。</li>
+<li>总结：测试结果的分析，和测试过程的总结是自动化测试的关键。</li>
+<li>维护：自动化测试脚本的维护是一个难以解决但又必须要解决的问题。</li>
+<li>分析：在自动化测试过程中深刻的分析自动化用例的覆盖风险和脚本维护的成本。</li>
+</ul>
+<img src="/2019/08/23/selenium/1.png">
+
+<h3 id="二、关于selenium"><a href="#二、关于selenium" class="headerlink" title="二、关于selenium"></a>二、关于selenium</h3><p>Selenium是一个自动化测试框架，也是一个用于Web应用程序测试的工具。Selenium测试直接运行在浏览器中，就像真正的用户在操作一样。支持的浏览器包括IE、Mozilla Firefox、Mozilla Suite等。这个工具的主要功能包括：</p>
+<ol>
+<li>测试与浏览器的兼容性——测试你的应用程序看是否能够很好得工作在不同浏览器和操作系统之上。</li>
+<li>测试系统功能——创建衰退测试检验软件功能和用户需求。</li>
+<li>支持自动录制动作和自动生成。</li>
+<li>Net、Java、Perl等不同语言的测试脚本。</li>
+</ol>
+<h3 id="三、基于selenium3对携程网测试的设计与实现"><a href="#三、基于selenium3对携程网测试的设计与实现" class="headerlink" title="三、基于selenium3对携程网测试的设计与实现"></a>三、基于selenium3对携程网测试的设计与实现</h3><p>1、环境</p>
+<table>
+<thead>
+<tr>
+<th>操作系统</th>
+<th>Windows10</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>编程语言</td>
+<td>Python3.7</td>
+</tr>
+<tr>
+<td>自动化测试框架</td>
+<td>Selenium3 WebDriver</td>
+</tr>
+<tr>
+<td>测试平台</td>
+<td>Chrome75.0.90</td>
+</tr>
+<tr>
+<td>编程平台</td>
+<td>Anaconda3</td>
+</tr>
+</tbody></table>
+<p>其中，selenium包含了一系列工具组件：</p>
+<ul>
+<li>Selenium IDE：是嵌入到FireFox浏览器的插件，用于在Firefox上录制和回放Selenium脚本；虽然只能在Firefox下使用，但它能将录制好的脚本转换成各种Selenium WebDriver支持的程序语言，进而扩展到更广泛的浏览器类型；</li>
+<li>Selenium WebDriver：可支持多种语言，用于操作浏览器的一套API；支持各类型浏览器，跨操作系统;WebDriver为诸多语言提供完备的，用于实现web自动化测试的第三方库；</li>
+<li>Selenium Standalone Server：包括Selenium Grid、远程控制、分布式部署等，均可实现Selenium脚本的高效执行与拓展；利用Grid使得自动化测试可以并行运行，甚至在跨平台、异构的环境中运行，包括主流的移动端环境，如Android、iOS。</li>
+</ul>
+<p>2、设计测试脚本</p>
+<p>携程是一个在线票务服务网站，提供酒店预订、酒店点评及特价酒店查询、机票预订、飞机票查询、时刻表、票价查询、航班查询、度假预订等服务。本实验就针对携程网站的酒店预订功能设计测试用例，建立测试脚本，利用selenium完成自动化测试。</p>
+<p>首先，酒店预订功能的流程如图所示。</p>
+<img src="/2019/08/23/selenium/2.png">
+
+<p>以用户想要预定2019年6月22日到2019年6月23日南京的4星级酒店3间房间为例，设计的测试用例如下：</p>
+<table>
+<thead>
+<tr>
+<th align="center">测试ID</th>
+<th align="center">场景</th>
+<th align="left">测试步骤</th>
+<th>预期效果</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">TC1</td>
+<td align="center">输入目的地</td>
+<td align="left">点击文本框，输入“南京”</td>
+<td>自动匹配南京</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">TC2</td>
+<td align="center">输入入住日期</td>
+<td align="left">点击文本框，输入“2019-6-22”</td>
+<td>自动匹配日期yyyy-mm-dd</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">TC3</td>
+<td align="center">输入退房日期</td>
+<td align="left">点击文本框，输入“2019-6-23”</td>
+<td>自动匹配日期yyyy-mm-dd</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">TC4</td>
+<td align="center">选择预定房间数目</td>
+<td align="left">点击下拉框，选择“3间”</td>
+<td>选择成功</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">TC5</td>
+<td align="center">设置酒店星级</td>
+<td align="left">点击下拉框，选择“4星”</td>
+<td>选择成功</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">TC6</td>
+<td align="center">搜索</td>
+<td align="left">点击搜索按钮</td>
+<td>页面跳转，无错误提示</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>在此对于日期（yyyy-mm-dd）的选择，进行了等价类划分：</p>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>条件</th>
+<th>有效等价类</th>
+<th>编号</th>
+<th>无效等价类</th>
+<th>编号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td>入住：年-月-日离店：年-月-日</td>
+<td>Date1Date2</td>
+<td>1</td>
+<td>“-”符号错月=2,日&gt;29月=1,3,5,7,8,10,12,日&gt;31月=4,6,9,11,日&gt;30……</td>
+<td>5678…</td>
+</tr>
+<tr>
+<td></td>
+<td>入住日期选择</td>
+<td>入住日期在今日后</td>
+<td>2</td>
+<td>入住日期在今日前</td>
+<td>9</td>
+</tr>
+<tr>
+<td></td>
+<td>离店日期选择</td>
+<td>入住90天内离店入住后离店</td>
+<td>34</td>
+<td>入住90天外离店离店时间在入住时间之前</td>
+<td>1011</td>
+</tr>
+<tr>
+<td>输出</td>
+<td>日期正常</td>
+<td>Date1=yyyy-mm-ddDate2=yyyy-mm-dd</td>
+<td>12</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>入住时间大于离店时间</td>
+<td>Date1&gt;Date2</td>
+<td>13</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>入住时间超过今天</td>
+<td>Date1&gt;today</td>
+<td>14</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>日期格式错误</td>
+<td>Date1≠yyyy-mm-ddDate2≠yyyy-mm-dd</td>
+<td>15</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>入住酒店时间超过90天</td>
+<td>|Date1-Date2|&gt;90</td>
+<td>16</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>测试用例</td>
+<td>（举例）Date1=2019-6-22,Date2=2019-6-23Date1=2019.6.22,Date2=2019-6-23Date1=2019-6-24,Date2=2019-6-23……</td>
+<td>覆盖1、2、3、4、12覆盖5、15覆盖1、2、3、13……</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>3、测试结果</p>
+<p>Selenium3自动化测试结果如下图所示。编写脚本后运行，系统自动执行打开网页，输入数据等一系列操作。在此测试了无效等价类的输入输出结果，由下图可以看出，当输入无效日期时，系统就进行了自动的警告响应。</p>
+<p>获取HTML标签ID：</p>
+<img src="/2019/08/23/selenium/3.png">
+
+<p> selenium自动测试：</p>
+<img src="/2019/08/23/selenium/4.png">
+
+<p>日期无效等价类15测试：</p>
+<img src="/2019/08/23/selenium/5.png">
+
+<p>日期无效等价类13测试：</p>
+<img src="/2019/08/23/selenium/6.png"> 
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/MJL-1401/MJL-1401.github.io" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+<!--
+                <p class="copyright text-muted">&copy; 2019 MJL<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+-->
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
