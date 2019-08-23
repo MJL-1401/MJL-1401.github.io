@@ -79,25 +79,30 @@ figure.highlight pre {
   margin: 0;
   background: none;
 }
-figure.highlight table {
-  margin-top: 0;
-  border-spacing: 0;
+table,
+th,
+td {
+  border: 0.5px solid #fdf2f6;
 }
-figure.highlight table .gutter {
+th {
+  background: #fffafa;
+  color: #777073;
+}
+.gutter {
   color: color-meta;
   padding-right: 15px;
   border-right: 1px solid color-border;
   text-align: right;
 }
-figure.highlight table .code {
+.code {
   padding-left: 15px;
   border-left: 1px solid #fff;
   color: #666;
 }
-figure.highlight table .line {
+.line {
   height: 20px;
 }
-figure.highlight table .line.marked {
+.line.marked {
   background: #d6d6d6;
 }
 pre .comment,
