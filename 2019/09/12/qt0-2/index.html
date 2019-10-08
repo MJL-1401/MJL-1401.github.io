@@ -207,7 +207,67 @@
 
             <!-- Post Main Content -->
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                
+                <h4 id="Q：在解析QJSON文件并且读出到文本框控件时，读出的中文全是显示乱码，英文和数字没有问题。"><a href="#Q：在解析QJSON文件并且读出到文本框控件时，读出的中文全是显示乱码，英文和数字没有问题。" class="headerlink" title="Q：在解析QJSON文件并且读出到文本框控件时，读出的中文全是显示乱码，英文和数字没有问题。"></a>Q：在解析QJSON文件并且读出到文本框控件时，读出的中文全是显示乱码，英文和数字没有问题。</h4><h4 id="A：猜想是编码方式出了问题。"><a href="#A：猜想是编码方式出了问题。" class="headerlink" title="A：猜想是编码方式出了问题。"></a>A：猜想是编码方式出了问题。</h4><h4 id="Solution："><a href="#Solution：" class="headerlink" title="Solution："></a>Solution：</h4><h5 id="1、要么在读取的时候设置字符集"><a href="#1、要么在读取的时候设置字符集" class="headerlink" title="1、要么在读取的时候设置字符集"></a>1、要么在读取的时候设置字符集</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(!fileName.isEmpty())  </span><br><span class="line"></span><br><span class="line">      &#123;  </span><br><span class="line">        ``<span class="function">QFile <span class="title">file</span><span class="params">(fileName)</span></span>;  </span><br><span class="line">        ``<span class="keyword">if</span>` `(file.open(QFile::ReadOnly | QFile::Text))  </span><br><span class="line">        ``&#123;  </span><br><span class="line">            ``<span class="function">QTextStream <span class="title">toText</span><span class="params">(&amp;file)</span></span>;  </span><br><span class="line">        ``<span class="comment">//设置文件流编码方式，UTF-8、GBK、Unicode等  </span></span><br><span class="line">            ``toText.setCodec(``<span class="string">"GBK"</span>``);  </span><br><span class="line">            ``textEdit-&gt;setPlainText(toText.readAll());  </span><br><span class="line">        ``&#125;    </span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="2、要么在将字符输入到文本文件时，设置字符集"><a href="#2、要么在将字符输入到文本文件时，设置字符集" class="headerlink" title="2、要么在将字符输入到文本文件时，设置字符集"></a>2、要么在将字符输入到文本文件时，设置字符集</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">QTextStream <span class="title">in</span><span class="params">(&amp;file)</span></span>;</span><br><span class="line"><span class="comment">//设置文件流编码方式，UTF-8、GBK、Unicode等</span></span><br><span class="line">in.setCodec(<span class="string">"UTF-8"</span>);</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>扩展【*】：QString 是不存在中文支持问题的，很多人遇到问题，并不是本身 QString 的问题，而是没有将自己希望的字符串正确赋给QString。</p>
+<table>
+<thead>
+<tr>
+<th align="center">源代码的编码</th>
+<th align="center">编译器</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">GBK</td>
+<td align="center">cl</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">mingw-g++</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">g++</td>
+</tr>
+<tr>
+<td align="center">UTF-8(不带BOM)</td>
+<td align="center">cl</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">mingw-g++</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">g++</td>
+</tr>
+<tr>
+<td align="center">UTF-8(带BOM)</td>
+<td align="center">cl</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">mingw-g++</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">g++</td>
+</tr>
+</tbody></table>
+<p>源文件是有编码的，但是这种纯文本文件却不会记录自己采用的编码 。</p>
+<p>QString 内部采用的是Unicode，它可以同时存放GBK中的字符”我是汉字”,BIG5中的字符”扂岆犖趼” 以及Latin-1中的字符”ÎÒÊÇºº×Ö”。<br>当你需要从窄字符串 char* 转成Unicode的QString字符串的，你需要告诉QString你的这串char* 中究竟是什么编码？GBK、BIG5、Latin-1？<br>在你不告诉它的情况下，它默认选择了Latin-1，于是8个字符”ÎÒÊÇºº×Ö”的unicode码被存进了QString中。最终，8个Latin字符出现在你期盼看到4中文字符的地方，<br>所谓的乱码出现了。<br>网上有很多方法介绍直接在main.cpp里设置：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">QTextCodec *codec = QTextCodec::codecForName(<span class="string">"UTF-8"</span>);</span><br><span class="line">    QTextCodec::setCodecForTr(codec);</span><br><span class="line">    QTextCodec::setCodecForLocale(codec);</span><br><span class="line">    QTextCodec::setCodecForCStrings(codec);</span><br></pre></td></tr></table></figure>
+
+<p>其实这在某些情况下也是有问题的，因为程序可能读到系统的中文路径，或者调用中文路径下的外部程序，这时候如果系统是gb2312就有问题了。<br>因为中文路径的编码是采用utf-8存到QString里的，系统读中文路径解码的时候采用的却是系统的gb2312，所以会调不起带中文路径的外部程序。<br>以上问题下面方法可以解决：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">QTextCodec *codec = QTextCodec::codecForName(<span class="string">"UTF-8"</span>);</span><br><span class="line">   QTextCodec::setCodecForTr(codec);</span><br><span class="line">   QTextCodec::setCodecForLocale(QTextCodec::codecForLocale());</span><br><span class="line">   QTextCodec::setCodecForCStrings(QTextCodec::codecForLocale());</span><br></pre></td></tr></table></figure>
+
+<p>对于外部字符串编码解码全部采用本地编码。</p>
+<p>【*】参考资料：<a href="https://blog.csdn.net/brave_heart_lxl/article/details/7186631" target="_blank" rel="noopener">https://blog.csdn.net/brave_heart_lxl/article/details/7186631</a></p>
+<p>对于外部字符串编码解码全部采用本地编码。</p>
+
 
                 
             </div>
