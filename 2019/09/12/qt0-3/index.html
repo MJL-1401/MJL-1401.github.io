@@ -207,7 +207,52 @@
 
             <!-- Post Main Content -->
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                
+                <h3 id="一、需求说明"><a href="#一、需求说明" class="headerlink" title="一、需求说明"></a>一、需求说明</h3><p>在程序运行过程中，会遇到调用外部执行程序的情况，比如调用系统应用，win下的CMD、记事本、excel等，或者调用其他应用，比如QQ、浏览器等。</p>
+<h3 id="二、程序实现"><a href="#二、程序实现" class="headerlink" title="二、程序实现"></a>二、程序实现</h3><p>QProcess类的作用是启动一个外部的程序并与之交互它有三种方式调用外部程序:</p>
+<ol>
+<li>execute</li>
+<li>start</li>
+<li>startDetached</li>
+</ol>
+<p>从调用上看:</p>
+<p>​    execute是阻塞调用, 并且继承了调用者环境变量和工作目录(The environment and working directory are inherited from the calling process.)</p>
+<p>​    start则是异步调用,而非阻塞调用.</p>
+<p>​    startDetached呢则是运行外部程序并且脱离调用程序. 说起来有点饶口,简单点说就是外部程序在被调用后就和调用程序没有半毛关系了,即便是关闭调用程序,外部程序也不会被关闭.</p>
+<p>从与外部程序交互上看:</p>
+<p>​    直接使用execute调用外部程序是没办法对其进行交互的,因为程序直接阻塞在那里了.</p>
+<p>​    使用start是可以和外部程序进行交互的</p>
+<p>​    使用startDetached也是不能和外部程序进行交互,因为已经脱离调用程序了.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>调用方式</th>
+<th align="center">交互</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>execute</td>
+<td>同步调用</td>
+<td align="center">不可以</td>
+</tr>
+<tr>
+<td>start</td>
+<td>异步调用</td>
+<td align="center">可以</td>
+</tr>
+<tr>
+<td>startDetached</td>
+<td>异步调用</td>
+<td align="center">不可以</td>
+</tr>
+</tbody></table>
+<h5 id="1、调用系统应用"><a href="#1、调用系统应用" class="headerlink" title="1、调用系统应用"></a>1、调用系统应用</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;QProcess&gt;</span></span></span><br><span class="line">QProcess *poc = <span class="keyword">new</span> QProcess(<span class="keyword">this</span>);</span><br><span class="line">poc-&gt;start(<span class="string">"CMD.exe"</span>);<span class="comment">//调用命令行</span></span><br><span class="line"></span><br><span class="line">poc-&gt;start(<span class="string">"C:\\Windows\\system32\\calc.exe"</span>);<span class="comment">//调用计算器</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//***********************************************************</span></span><br><span class="line">QString url = <span class="string">"E:\\work\\示例.txt"</span>;            </span><br><span class="line">QStringList <span class="built_in">list</span>;   </span><br><span class="line"><span class="built_in">list</span>.append(url ); <span class="comment">//文件的路径作为notepad的一个命令参数</span></span><br><span class="line">QProcess::execute(<span class="string">"notepad"</span>,<span class="built_in">list</span>);<span class="comment">//调用记事本并且打开一个txt文件</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="2、调用其他应用"><a href="#2、调用其他应用" class="headerlink" title="2、调用其他应用"></a>2、调用其他应用</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;QProcess&gt;</span></span></span><br><span class="line">QProcess *process = <span class="keyword">new</span> QProcess(<span class="keyword">this</span>);</span><br><span class="line">QString workDir=<span class="string">"C:\\Program Files\\somepath"</span>; <span class="comment">//设置工作目录</span></span><br><span class="line">QString command = workDir+<span class="string">"example.exe"</span>;</span><br><span class="line">process-&gt;startDetached(command,QStringList(),workDir);</span><br><span class="line">process-&gt;waitForFinished();</span><br></pre></td></tr></table></figure>
+
+<h3 id="三、可能遇到的问题"><a href="#三、可能遇到的问题" class="headerlink" title="三、可能遇到的问题"></a>三、可能遇到的问题</h3><p>1、调用无响应</p>
+<p>A：可能是因为当前工作目录没有定位到该执行程序的根目录下，有些执行程序在运行时，必须要用到根目录下的一些关联包，或者可能是路径中出现了空格。可以将当前工作目录设置到外部执行文件目录。</p>
+
 
                 
             </div>
